@@ -1,7 +1,7 @@
 export const visibleGridTrees = (input: string) => {
   const grid = input.split('\n');
 
-  const visibilityGrid: any = grid.map((row) => row.split('').map((char) => 0));
+  const visibilityGrid = grid.map((row) => row.split('').map(() => '0'));
 
   const directions = [
     [0, 1],
