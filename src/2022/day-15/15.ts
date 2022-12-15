@@ -153,7 +153,7 @@ class Solution {
     );
   }
 
-  getMaxEffectiveRangeFromSensors(pos: Location): number {
+  getMaxEffectiveRangeFromAllSensors(pos: Location): number {
     let max = 0;
 
     this.sensors.forEach((sensor) => {
@@ -179,7 +179,8 @@ class Solution {
           return location;
         }
 
-        const effectiveRange = this.getMaxEffectiveRangeFromSensors(location);
+        const effectiveRange =
+          this.getMaxEffectiveRangeFromAllSensors(location);
 
         x += effectiveRange;
       }
