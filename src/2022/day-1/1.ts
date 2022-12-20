@@ -1,10 +1,5 @@
-/**
- * @param {string} input
- */
-const getMostCalories = async (input) => {
+const getMostCalories = (input: string) => {
   input.trim();
-
-  let max = 0;
 
   const arr = input.split('\n');
 
@@ -24,8 +19,6 @@ const getMostCalories = async (input) => {
           // break;
         }
       }
-
-      // max = Math.max(max, current);
 
       current = 0;
     }
