@@ -1,13 +1,13 @@
-const countScore = (input) => {
+const countScore = (input: string) => {
   const arr = input.split('\n');
 
-  const map = {
+  const map: Record<string, number> = {
     X: -1,
     Y: 0,
     Z: 1,
   };
 
-  const scoresMap = {
+  const scoresMap: Record<string, number> = {
     A: 1, // rock
     B: 2, // paper
     C: 3, // scissors
@@ -39,6 +39,8 @@ const countScore = (input) => {
         right = variants[index + 1];
       }
     }
+
+    if (!right) throw new Error('Invalid right value');
 
     const diff = left.charCodeAt(0) - right.charCodeAt(0);
 
