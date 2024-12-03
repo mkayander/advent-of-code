@@ -1,31 +1,31 @@
 const getMostCalories = (input: string) => {
-  input.trim();
+    input.trim();
 
-  const arr = input.split('\n');
+    const arr = input.split("\n");
 
-  const top3 = new Uint32Array(3);
+    const top3 = new Uint32Array(3);
 
-  let current = 0;
-  for (const num of arr) {
-    if (num !== '') {
-      current += +num;
-    } else {
-      console.log(current, top3);
-      for (const i in top3) {
-        if (current > top3[i]) {
-          const prev = top3[i];
-          top3[i] = current;
-          current = prev;
-          // break;
+    let current = 0;
+    for (const num of arr) {
+        if (num !== "") {
+            current += +num;
+        } else {
+            console.log(current, top3);
+            for (const i in top3) {
+                if (current > top3[i]) {
+                    const prev = top3[i];
+                    top3[i] = current;
+                    current = prev;
+                    // break;
+                }
+            }
+
+            current = 0;
         }
-      }
-
-      current = 0;
     }
-  }
 
-  console.log(top3);
-  console.log('🎉 ' + top3.reduce((acc, curr) => acc + curr, 0) + ' 🎉');
+    console.log(top3);
+    console.log("🎉 " + top3.reduce((acc, curr) => acc + curr, 0) + " 🎉");
 };
 
 const inp = `22243

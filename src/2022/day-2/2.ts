@@ -1,75 +1,75 @@
 const countScore = (input: string) => {
-  const arr = input.split('\n');
+    const arr = input.split("\n");
 
-  const map: Record<string, number> = {
-    X: -1,
-    Y: 0,
-    Z: 1,
-  };
+    const map: Record<string, number> = {
+        X: -1,
+        Y: 0,
+        Z: 1,
+    };
 
-  const scoresMap: Record<string, number> = {
-    A: 1, // rock
-    B: 2, // paper
-    C: 3, // scissors
-  };
+    const scoresMap: Record<string, number> = {
+        A: 1, // rock
+        B: 2, // paper
+        C: 3, // scissors
+    };
 
-  const variants = ['A', 'B', 'C'];
+    const variants = ["A", "B", "C"];
 
-  let score = 0;
+    let score = 0;
 
-  for (const match of arr) {
-    const [left, action] = match.split(' ');
-    const actionCode = map[action];
+    for (const match of arr) {
+        const [left, action] = match.split(" ");
+        const actionCode = map[action];
 
-    const index = variants.indexOf(left);
+        const index = variants.indexOf(left);
 
-    let right;
-    if (actionCode === 0) {
-      right = left;
-    } else if (actionCode === -1) {
-      if (index === 0) {
-        right = variants.at(-1);
-      } else {
-        right = variants[index - 1];
-      }
-    } else if (actionCode === 1) {
-      if (index === variants.length - 1) {
-        right = variants[0];
-      } else {
-        right = variants[index + 1];
-      }
+        let right;
+        if (actionCode === 0) {
+            right = left;
+        } else if (actionCode === -1) {
+            if (index === 0) {
+                right = variants.at(-1);
+            } else {
+                right = variants[index - 1];
+            }
+        } else if (actionCode === 1) {
+            if (index === variants.length - 1) {
+                right = variants[0];
+            } else {
+                right = variants[index + 1];
+            }
+        }
+
+        if (!right) throw new Error("Invalid right value");
+
+        const diff = left.charCodeAt(0) - right.charCodeAt(0);
+
+        if (diff === 0) {
+            score += 3 + scoresMap[right];
+            if (actionCode !== 0) console.error("should not be draw");
+            continue;
+        }
+
+        const rightWins = diff === -1 || diff === 2;
+
+        if (rightWins && actionCode !== 1) {
+            console.error("should not be right wins");
+        }
+
+        if (actionCode === 1 && !rightWins) {
+            console.error("should be right wins");
+        }
+
+        score += scoresMap[right] + (rightWins ? 6 : 0);
+
+        // console.log({ left, action, right, diff, rightWins, score });
     }
 
-    if (!right) throw new Error('Invalid right value');
-
-    const diff = left.charCodeAt(0) - right.charCodeAt(0);
-
-    if (diff === 0) {
-      score += 3 + scoresMap[right];
-      if (actionCode !== 0) console.error('should not be draw');
-      continue;
-    }
-
-    const rightWins = diff === -1 || diff === 2;
-
-    if (rightWins && actionCode !== 1) {
-      console.error('should not be right wins');
-    }
-
-    if (actionCode === 1 && !rightWins) {
-      console.error('should be right wins');
-    }
-
-    score += scoresMap[right] + (rightWins ? 6 : 0);
-
-    // console.log({ left, action, right, diff, rightWins, score });
-  }
-
-  console.log(score);
+    console.log(score);
 };
 
 countScore(
-  `B Y
+    `B Y
 A Z
 A Z
 B Y
@@ -2568,5 +2568,5 @@ C Y
 A Y
 A Z
 A X
-C Y`
+C Y`,
 );
