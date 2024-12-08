@@ -2,5 +2,5 @@
     "deno.enable": true,
     "deno.unstable": true,
     "typescript.tsdk": "node_modules/typescript/lib",
-    "cSpell.words": ["indegrees"]
+    "cSpell.words": ["antinodes", "indegrees"]
 }
