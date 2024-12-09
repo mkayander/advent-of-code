@@ -11,7 +11,7 @@ type Segment = {
     size: number;
 };
 
-const parseInput = (input: string) => input.split("").map((n) => +n);
+const parseInput = (input: string) => input.split("").map(Number);
 
 const solve = (input: string) => {
     const diskMap = parseInput(input);
